@@ -1,0 +1,43 @@
+{
+    "projectFileVersion": "2022-10-01-preview",
+    "assets": {
+        "utterances": [
+            {
+                "text": "get market cap for apple",
+                "language": "en-us",
+                "intent": "GetFundamental",
+                "entities": [
+                    {
+                        "category": "fundamentalType",
+                        "offset": 4,
+                        "length": 10
+                    },
+                    {
+                        "category": "Stock",
+                        "offset": 19,
+                        "length": 5
+                    }
+                ],
+                "dataset": "Train"
+            },
+            {
+                "text": "should i buy apple right now?",
+                "language": "en-us",
+                "intent": "GetFundamental",
+                "entities": [
+                    {
+                        "category": "fundamentalType",
+                        "offset": 0,
+                        "length": 12
+                    },
+                    {
+                        "category": "Stock",
+                        "offset": 13,
+                        "length": 5
+                    }
+                ],
+                "dataset": "Train"
+            }
+        ]
+    }
+}

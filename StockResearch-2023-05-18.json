@@ -1,0 +1,952 @@
+{
+    "projectFileVersion": "2022-10-01-preview",
+    "stringIndexType": "Utf16CodeUnit",
+    "metadata": {
+        "projectKind": "Conversation",
+        "settings": {
+            "confidenceThreshold": 0
+        },
+        "projectName": "StockResearch",
+        "multilingual": false,
+        "description": "to aid investor stock research",
+        "language": "en-us"
+    },
+    "assets": {
+        "projectKind": "Conversation",
+        "intents": [
+            {
+                "category": "None"
+            },
+            {
+                "category": "Cancel"
+            },
+            {
+                "category": "Help"
+            },
+            {
+                "category": "GetFundamental"
+            },
+            {
+                "category": "CompareFundamental"
+            }
+        ],
+        "entities": [
+            {
+                "category": "fundamentalType",
+                "compositionSetting": "combineComponents",
+                "list": {
+                    "sublists": [
+                        {
+                            "listKey": "AnalystRating",
+                            "synonyms": [
+                                {
+                                    "language": "en-us",
+                                    "values": [
+                                        "AnalystRating",
+                                        "TargetPrice",
+                                        "target price",
+                                        "valuation",
+                                        "valued at",
+                                        "wall street",
+                                        "wall street think",
+                                        "wall street opinion",
+                                        "analyst rating",
+                                        "analyst think",
+                                        "analyst opinion",
+                                        "wall street analyst",
+                                        "should I buy"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "listKey": "Dividend",
+                            "synonyms": [
+                                {
+                                    "language": "en-us",
+                                    "values": [
+                                        "Dividend",
+                                        "dividend yield",
+                                        "dividend pay date",
+                                        "dividend"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "listKey": "Earnings",
+                            "synonyms": [
+                                {
+                                    "language": "en-us",
+                                    "values": [
+                                        "Earnings",
+                                        "earnings",
+                                        "earnings per share",
+                                        "revenue",
+                                        "cash flow",
+                                        "profit",
+                                        "gross profit trailing 12 months",
+                                        "gross profit ttm",
+                                        "revenue TTM",
+                                        "free cashflow",
+                                        "cashflow",
+                                        "total cashflow",
+                                        "EBITDA",
+                                        "EV",
+                                        "Enterprise Value"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "listKey": "MarketCapitalization",
+                            "synonyms": [
+                                {
+                                    "language": "en-us",
+                                    "values": [
+                                        "MarketCapitalization",
+                                        "market cap",
+                                        "market capitalization"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "listKey": "PriceEarningsRatio",
+                            "synonyms": [
+                                {
+                                    "language": "en-us",
+                                    "values": [
+                                        "PriceEarningsRatio",
+                                        "PE",
+                                        "price-earnings ratio",
+                                        "price earnings ratio",
+                                        "PE value",
+                                        "price-to-earnings ratio",
+                                        "price to earnings ratio",
+                                        "price earning ratio"
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "requiredComponents": [
+                    "list"
+                ]
+            },
+            {
+                "category": "Stock",
+                "compositionSetting": "combineComponents",
+                "requiredComponents": [
+                    "learned"
+                ]
+            },
+            {
+                "category": "Date",
+                "compositionSetting": "combineComponents",
+                "prebuilts": [
+                    {
+                        "category": "DateTime"
+                    }
+                ]
+            },
+            {
+                "category": "Sector",
+                "compositionSetting": "combineComponents",
+                "requiredComponents": [
+                    "learned"
+                ]
+            },
+            {
+                "category": "Industry",
+                "compositionSetting": "combineComponents",
+                "requiredComponents": [
+                    "learned"
+                ]
+            },
+            {
+                "category": "MarketCapitalizationRange",
+                "compositionSetting": "combineComponents",
+                "prebuilts": [
+                    {
+                        "category": "Quantity.NumberRange"
+                    }
+                ],
+                "requiredComponents": [
+                    "prebuilts"
+                ]
+            },
+            {
+                "category": "earningsPerShareRange",
+                "compositionSetting": "combineComponents",
+                "prebuilts": [
+                    {
+                        "category": "Quantity.NumberRange"
+                    }
+                ]
+            },
+            {
+                "category": "sortOrder",
+                "compositionSetting": "combineComponents"
+            },
+            {
+                "category": "industry",
+                "compositionSetting": "combineComponents",
+                "list": {
+                    "sublists": [
+                        {
+                            "listKey": "industrial",
+                            "synonyms": [
+                                {
+                                    "language": "en-us",
+                                    "values": [
+                                        "industrial"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "listKey": "energy",
+                            "synonyms": [
+                                {
+                                    "language": "en-us",
+                                    "values": [
+                                        "energy"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "listKey": "semiconductor",
+                            "synonyms": [
+                                {
+                                    "language": "en-us",
+                                    "values": [
+                                        "semiconductor"
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "requiredComponents": [
+                    "list"
+                ]
+            },
+            {
+                "category": "CompareFundamentalMetric",
+                "compositionSetting": "combineComponents",
+                "list": {
+                    "sublists": [
+                        {
+                            "listKey": "200DayVolume",
+                            "synonyms": [
+                                {
+                                    "language": "en-us",
+                                    "values": [
+                                        "200DayVolume",
+                                        "200 day volume",
+                                        "average volume over the last 200 days"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "listKey": "lastDayVolume",
+                            "synonyms": [
+                                {
+                                    "language": "en-us",
+                                    "values": [
+                                        "lastDayVolume",
+                                        "last day volume",
+                                        "yesterday"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "listKey": "mostLastDayLoss",
+                            "synonyms": [
+                                {
+                                    "language": "en-us",
+                                    "values": [
+                                        "mostLastDayLoss",
+                                        "lost the most yesterady",
+                                        "most last day loss"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "listKey": "mostLastDayGain",
+                            "synonyms": [
+                                {
+                                    "language": "en-us",
+                                    "values": [
+                                        "mostLastDayGain",
+                                        "most gain yesterday",
+                                        "most last day gain"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "listKey": "belowWallStreetEstimate",
+                            "synonyms": [
+                                {
+                                    "language": "en-us",
+                                    "values": [
+                                        "belowWallStreetEstimate",
+                                        "below wall street estimate"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "listKey": "aboveWallStreetEstimate",
+                            "synonyms": [
+                                {
+                                    "language": "en-us",
+                                    "values": [
+                                        "aboveWallStreetEstimate",
+                                        "above wall street estimate"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "listKey": "50DayHigh",
+                            "synonyms": [
+                                {
+                                    "language": "en-us",
+                                    "values": [
+                                        "50DayHigh",
+                                        "50 day high"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "listKey": "50DayLow",
+                            "synonyms": [
+                                {
+                                    "language": "en-us",
+                                    "values": [
+                                        "50DayLow",
+                                        "50 day low"
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            },
+            {
+                "category": "NumberOfStocks",
+                "compositionSetting": "combineComponents",
+                "prebuilts": [
+                    {
+                        "category": "Quantity.Number"
+                    }
+                ],
+                "requiredComponents": [
+                    "prebuilts"
+                ]
+            }
+        ],
+        "utterances": [
+            {
+                "text": "get the stocks that had the highest volume over the last 200 days in the tech industry",
+                "language": "en-us",
+                "intent": "CompareFundamental",
+                "entities": [
+                    {
+                        "category": "CompareFundamentalMetric",
+                        "offset": 28,
+                        "length": 37
+                    },
+                    {
+                        "category": "industry",
+                        "offset": 73,
+                        "length": 13
+                    }
+                ],
+                "dataset": "Train"
+            },
+            {
+                "text": "get the companies that had the most volume in the last day in the retail industry",
+                "language": "en-us",
+                "intent": "CompareFundamental",
+                "entities": [
+                    {
+                        "category": "CompareFundamentalMetric",
+                        "offset": 31,
+                        "length": 27
+                    },
+                    {
+                        "category": "industry",
+                        "offset": 66,
+                        "length": 15
+                    }
+                ],
+                "dataset": "Train"
+            },
+            {
+                "text": "get the companies that suffered the most lost yesterday in the retail industry",
+                "language": "en-us",
+                "intent": "CompareFundamental",
+                "entities": [
+                    {
+                        "category": "CompareFundamentalMetric",
+                        "offset": 23,
+                        "length": 32
+                    },
+                    {
+                        "category": "industry",
+                        "offset": 63,
+                        "length": 15
+                    }
+                ],
+                "dataset": "Train"
+            },
+            {
+                "text": "get the companies that suffered the most lost in the retail industry yesterday",
+                "language": "en-us",
+                "intent": "CompareFundamental",
+                "entities": [
+                    {
+                        "category": "CompareFundamentalMetric",
+                        "offset": 23,
+                        "length": 30
+                    },
+                    {
+                        "category": "industry",
+                        "offset": 53,
+                        "length": 15
+                    },
+                    {
+                        "category": "CompareFundamentalMetric",
+                        "offset": 68,
+                        "length": 10
+                    }
+                ],
+                "dataset": "Train"
+            },
+            {
+                "text": "get the companies that have the highest gains in the last 5 days in the retail sector",
+                "language": "en-us",
+                "intent": "CompareFundamental",
+                "entities": [
+                    {
+                        "category": "CompareFundamentalMetric",
+                        "offset": 28,
+                        "length": 36
+                    },
+                    {
+                        "category": "Industry",
+                        "offset": 72,
+                        "length": 13
+                    }
+                ],
+                "dataset": "Train"
+            },
+            {
+                "text": "What are the stocks in semiconductor industry with 200 day lows sorted by EPS",
+                "language": "en-us",
+                "intent": "CompareFundamental",
+                "entities": [
+                    {
+                        "category": "Industry",
+                        "offset": 23,
+                        "length": 22
+                    },
+                    {
+                        "category": "CompareFundamentalMetric",
+                        "offset": 51,
+                        "length": 12
+                    }
+                ],
+                "dataset": "Train"
+            },
+            {
+                "text": "what retail companies have been undervalued by wall street?",
+                "language": "en-us",
+                "intent": "CompareFundamental",
+                "entities": [
+                    {
+                        "category": "industry",
+                        "offset": 5,
+                        "length": 16
+                    },
+                    {
+                        "category": "CompareFundamentalMetric",
+                        "offset": 32,
+                        "length": 26
+                    }
+                ],
+                "dataset": "Train"
+            },
+            {
+                "text": "What are the largest stocks in the tech industry?",
+                "language": "en-us",
+                "intent": "CompareFundamental",
+                "entities": [
+                    {
+                        "category": "industry",
+                        "offset": 35,
+                        "length": 13
+                    }
+                ],
+                "dataset": "Train"
+            },
+            {
+                "text": "get market cap for apple",
+                "language": "en-us",
+                "intent": "GetFundamental",
+                "entities": [
+                    {
+                        "category": "fundamentalType",
+                        "offset": 4,
+                        "length": 10
+                    },
+                    {
+                        "category": "Stock",
+                        "offset": 19,
+                        "length": 5
+                    }
+                ],
+                "dataset": "Train"
+            },
+            {
+                "text": "should i buy apple right now?",
+                "language": "en-us",
+                "intent": "GetFundamental",
+                "entities": [
+                    {
+                        "category": "fundamentalType",
+                        "offset": 0,
+                        "length": 12
+                    },
+                    {
+                        "category": "Stock",
+                        "offset": 13,
+                        "length": 5
+                    }
+                ],
+                "dataset": "Train"
+            },
+            {
+                "text": "get 10 stocks that are above wall street estimate",
+                "language": "en-us",
+                "intent": "CompareFundamental",
+                "entities": [
+                    {
+                        "category": "NumberOfStocks",
+                        "offset": 4,
+                        "length": 9
+                    },
+                    {
+                        "category": "CompareFundamentalMetric",
+                        "offset": 23,
+                        "length": 26
+                    }
+                ],
+                "dataset": "Train"
+            },
+            {
+                "text": "What are the stocks in semiconductor industry with 50 day lows sorted by EPS?",
+                "language": "en-us",
+                "intent": "CompareFundamental",
+                "entities": [
+                    {
+                        "category": "industry",
+                        "offset": 23,
+                        "length": 22
+                    },
+                    {
+                        "category": "CompareFundamentalMetric",
+                        "offset": 51,
+                        "length": 11
+                    }
+                ],
+                "dataset": "Train"
+            },
+            {
+                "text": "get fundamental of bank of america",
+                "language": "en-us",
+                "intent": "GetFundamental",
+                "entities": [
+                    {
+                        "category": "Stock",
+                        "offset": 19,
+                        "length": 15
+                    }
+                ],
+                "dataset": "Train"
+            },
+            {
+                "text": "get fundamental for apple",
+                "language": "en-us",
+                "intent": "GetFundamental",
+                "entities": [
+                    {
+                        "category": "Stock",
+                        "offset": 20,
+                        "length": 5
+                    }
+                ],
+                "dataset": "Train"
+            },
+            {
+                "text": "what's the wall street opinion of AAPL",
+                "language": "en-us",
+                "intent": "GetFundamental",
+                "entities": [
+                    {
+                        "category": "fundamentalType",
+                        "offset": 11,
+                        "length": 19
+                    },
+                    {
+                        "category": "Stock",
+                        "offset": 34,
+                        "length": 4
+                    }
+                ],
+                "dataset": "Train"
+            },
+            {
+                "text": "what's AAPL valued at",
+                "language": "en-us",
+                "intent": "GetFundamental",
+                "entities": [
+                    {
+                        "category": "fundamentalType",
+                        "offset": 12,
+                        "length": 9
+                    }
+                ],
+                "dataset": "Train"
+            },
+            {
+                "text": "what's the valuation of AAPL",
+                "language": "en-us",
+                "intent": "GetFundamental",
+                "entities": [
+                    {
+                        "category": "fundamentalType",
+                        "offset": 11,
+                        "length": 9
+                    },
+                    {
+                        "category": "Stock",
+                        "offset": 24,
+                        "length": 4
+                    }
+                ],
+                "dataset": "Train"
+            },
+            {
+                "text": "what's the analyst opinion of AAPL ?",
+                "language": "en-us",
+                "intent": "GetFundamental",
+                "entities": [
+                    {
+                        "category": "fundamentalType",
+                        "offset": 11,
+                        "length": 15
+                    },
+                    {
+                        "category": "Stock",
+                        "offset": 30,
+                        "length": 4
+                    }
+                ],
+                "dataset": "Train"
+            },
+            {
+                "text": "what does wall street think of AAPL right now",
+                "language": "en-us",
+                "intent": "GetFundamental",
+                "entities": [
+                    {
+                        "category": "fundamentalType",
+                        "offset": 10,
+                        "length": 17
+                    },
+                    {
+                        "category": "Stock",
+                        "offset": 31,
+                        "length": 4
+                    }
+                ],
+                "dataset": "Train"
+            },
+            {
+                "text": "what's the target price for AAPL in the upcoming quarter",
+                "language": "en-us",
+                "intent": "GetFundamental",
+                "entities": [
+                    {
+                        "category": "fundamentalType",
+                        "offset": 11,
+                        "length": 12
+                    },
+                    {
+                        "category": "Stock",
+                        "offset": 28,
+                        "length": 4
+                    }
+                ],
+                "dataset": "Train"
+            },
+            {
+                "text": "what do the analyst think of AAPL right now",
+                "language": "en-us",
+                "intent": "GetFundamental",
+                "entities": [
+                    {
+                        "category": "fundamentalType",
+                        "offset": 12,
+                        "length": 13
+                    },
+                    {
+                        "category": "Stock",
+                        "offset": 29,
+                        "length": 4
+                    }
+                ],
+                "dataset": "Train"
+            },
+            {
+                "text": "get fundamental of apple",
+                "language": "en-us",
+                "intent": "GetFundamental",
+                "entities": [
+                    {
+                        "category": "Stock",
+                        "offset": 19,
+                        "length": 5
+                    }
+                ],
+                "dataset": "Train"
+            },
+            {
+                "text": "what is ford's valuation",
+                "language": "en-us",
+                "intent": "GetFundamental",
+                "entities": [
+                    {
+                        "category": "Stock",
+                        "offset": 8,
+                        "length": 4
+                    },
+                    {
+                        "category": "fundamentalType",
+                        "offset": 15,
+                        "length": 9
+                    }
+                ],
+                "dataset": "Train"
+            },
+            {
+                "text": "what's airbnb valued at right now",
+                "language": "en-us",
+                "intent": "GetFundamental",
+                "entities": [
+                    {
+                        "category": "Stock",
+                        "offset": 7,
+                        "length": 6
+                    },
+                    {
+                        "category": "fundamentalType",
+                        "offset": 14,
+                        "length": 9
+                    }
+                ],
+                "dataset": "Train"
+            },
+            {
+                "text": "how much dividend did goldman sachs pay this quarter",
+                "language": "en-us",
+                "intent": "GetFundamental",
+                "entities": [
+                    {
+                        "category": "fundamentalType",
+                        "offset": 9,
+                        "length": 8
+                    },
+                    {
+                        "category": "Stock",
+                        "offset": 22,
+                        "length": 13
+                    }
+                ],
+                "dataset": "Train"
+            },
+            {
+                "text": "get PE of snap",
+                "language": "en-us",
+                "intent": "GetFundamental",
+                "entities": [
+                    {
+                        "category": "fundamentalType",
+                        "offset": 4,
+                        "length": 2
+                    },
+                    {
+                        "category": "Stock",
+                        "offset": 10,
+                        "length": 4
+                    }
+                ],
+                "dataset": "Train"
+            },
+            {
+                "text": "grab me earnings of amazon",
+                "language": "en-us",
+                "intent": "GetFundamental",
+                "entities": [
+                    {
+                        "category": "fundamentalType",
+                        "offset": 8,
+                        "length": 8
+                    },
+                    {
+                        "category": "Stock",
+                        "offset": 20,
+                        "length": 6
+                    }
+                ],
+                "dataset": "Train"
+            },
+            {
+                "text": "fetch earnings of microsoft",
+                "language": "en-us",
+                "intent": "GetFundamental",
+                "entities": [
+                    {
+                        "category": "fundamentalType",
+                        "offset": 6,
+                        "length": 8
+                    },
+                    {
+                        "category": "Stock",
+                        "offset": 18,
+                        "length": 9
+                    }
+                ],
+                "dataset": "Train"
+            },
+            {
+                "text": "look up earnings of berkshire hathaway",
+                "language": "en-us",
+                "intent": "GetFundamental",
+                "entities": [
+                    {
+                        "category": "fundamentalType",
+                        "offset": 8,
+                        "length": 8
+                    },
+                    {
+                        "category": "Stock",
+                        "offset": 20,
+                        "length": 18
+                    }
+                ],
+                "dataset": "Train"
+            },
+            {
+                "text": "Look up earnings of apple",
+                "language": "en-us",
+                "intent": "GetFundamental",
+                "entities": [
+                    {
+                        "category": "fundamentalType",
+                        "offset": 8,
+                        "length": 8
+                    },
+                    {
+                        "category": "Stock",
+                        "offset": 20,
+                        "length": 5
+                    }
+                ],
+                "dataset": "Train"
+            },
+            {
+                "text": "What is earnings per share of TSLA",
+                "language": "en-us",
+                "intent": "GetFundamental",
+                "entities": [
+                    {
+                        "category": "fundamentalType",
+                        "offset": 8,
+                        "length": 18
+                    },
+                    {
+                        "category": "Stock",
+                        "offset": 30,
+                        "length": 4
+                    }
+                ],
+                "dataset": "Train"
+            },
+            {
+                "text": "get me the PE for tesla",
+                "language": "en-us",
+                "intent": "GetFundamental",
+                "entities": [
+                    {
+                        "category": "fundamentalType",
+                        "offset": 11,
+                        "length": 2
+                    },
+                    {
+                        "category": "Stock",
+                        "offset": 18,
+                        "length": 5
+                    }
+                ],
+                "dataset": "Train"
+            },
+            {
+                "text": "get stock data",
+                "language": "en-us",
+                "intent": "GetFundamental",
+                "entities": [],
+                "dataset": "Train"
+            },
+            {
+                "text": "get fundamental data on company",
+                "language": "en-us",
+                "intent": "GetFundamental",
+                "entities": [],
+                "dataset": "Train"
+            },
+            {
+                "text": "get fundamental data on a stock",
+                "language": "en-us",
+                "intent": "GetFundamental",
+                "entities": [],
+                "dataset": "Train"
+            },
+            {
+                "text": "get fundamental of a stock",
+                "language": "en-us",
+                "intent": "GetFundamental",
+                "entities": [],
+                "dataset": "Train"
+            },
+            {
+                "text": "get stock fundamental",
+                "language": "en-us",
+                "intent": "GetFundamental",
+                "entities": [],
+                "dataset": "Train"
+            }
+        ]
+    }
+}
